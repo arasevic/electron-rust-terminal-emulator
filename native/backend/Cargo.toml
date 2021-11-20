@@ -1,0 +1,8 @@
+[package]
+name = "electron-rust-terminal-emulator-backend"
+version = "0.0.0"
+authors = [ "Andrej Rasevic <andrej@rasevicengineering.com>" ]
+edition = "2018"
+
+[lib]
+name = "electron_rust_terminal_emulator_backend"

@@ -1,0 +1,21 @@
+[package]
+name = "electron-rust-terminal-emulator-marshalling"
+version = "0.0.0"
+authors = ["Andrej Rasevic <andrej@rasevicengineering.com>"]
+license = "MIT"
+build = "build.rs"
+edition = "2018"
+exclude = ["artifacts.json", "index.node"]
+
+[lib]
+name = "electron_rust_terminal_emulator_marshalling"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+neon-build = "0.4.0"
+# neon-build = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
+
+[dependencies]
+neon = "0.4.0"
+# neon = { git = "https://github.com/usagi/neon", branch = "fix-463-debug-build-mode-in-windows" }
+electron-rust-terminal-emulator-backend = { path = "backend" }
