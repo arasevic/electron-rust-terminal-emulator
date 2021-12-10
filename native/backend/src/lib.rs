@@ -1,3 +1,11 @@
+use std::*;
+use std::{
+  io::Write,
+  path::{Path, PathBuf},
+};
+extern crate dirs;
+use std::collections::HashMap;
+
 pub fn example_add(a: f32, b: f32) -> f32 {
  println!("[from native lib] example_add start");
  println!("[from native lib] a = {}, b = {}", a, b);
@@ -22,6 +30,99 @@ pub fn hello_from_rust() -> String {
 	let phrase = "Saying hello from rust inside of node wrapped in electron!";
 	phrase.to_string()
 }
+
+// for cd to $HOME directory
+pub fn cd() -> String {
+  let path = dirs::home_dir();
+  match path {
+    Some(p) => {
+      let _new_dir = env::set_current_dir(p);
+      let curr_dir = env::current_dir();
+      match curr_dir {
+        Ok(dir) => {
+          dir.to_str().unwrap().to_string() // returns current home directory path
+        },
+        Err(_e) => String::from("Error!") // should never occur
+      }
+    },
+    None => String::from("Error! No $HOME directory found.")
+  }
+}
+
+pub fn cd_with_args(dest: &str) -> String {
+  let curr_dir = env::current_dir();
+  match curr_dir {
+    Ok(dir) => {
+      let found_dirs: &HashMap<PathBuf, bool> = &get_dir_files(&dir);
+
+      // for cd to parent directory
+      if dest.trim() == ".." {
+        let parent = dir.as_path().parent();
+        let new_dir = env::set_current_dir(parent.unwrap());
+        match new_dir {
+          Ok(_) => {
+            return String::from("In parent")
+          },
+          Err(_) => {
+            return String::from("Error! No parent directory found.")
+          }
+        }
+      }
+
+      // for cd to child directory
+      if found_dirs.len() < 1 {
+        return String::from("This directory is empty!")
+      }
+      
+      // Now we have a list of available directories, check if given destination matches any and cd if so
+      for d in found_dirs {
+        if *d.1 == true && d.0.to_str().unwrap() == dest {
+          let new_dir = env::set_current_dir(d.0);
+          match new_dir {
+            Ok(_) => {
+              return d.0.to_str().unwrap().to_string()
+            },
+            Err(_) => {
+              return String::from("Error! Directory could not be moved to.")
+            }
+          }
+        } else if *d.1 == false && d.0.to_str().unwrap() == dest{
+          return String::from("That is a file not a directory!")
+        }
+      }
+      
+      return String::new()
+    },
+    Err(_e) => String::from("Error! Invalid \"cd\" call.")
+  }
+}
+
+pub fn get_dir_files(dir: &PathBuf) ->  HashMap<PathBuf, bool> {
+  let mut found_dirs: HashMap<PathBuf, bool> = HashMap::new(); // HashMap(K: Pathbuf, V: Bool) -- Value true if path is directory
+  let dir_paths = fs::read_dir(dir.to_str().unwrap()).unwrap();
+  
+  for d in dir_paths {
+    match d {
+      Ok(p) => {
+        match p.metadata() {
+          Ok(metadata) => {
+            if metadata.is_dir() {
+              found_dirs.insert(p.path(), true);
+            } else {
+              found_dirs.insert(p.path(), false);
+            }
+          },
+          Err(e) => eprintln!("Error! {}", e)
+        }
+      },
+      Err(e) => eprintln!("Error! {}", e)
+    }
+  }
+
+  return found_dirs;
+}
+
+
 
 #[cfg(test)]
 mod tests {
