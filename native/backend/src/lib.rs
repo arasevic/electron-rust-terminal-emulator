@@ -59,18 +59,24 @@ pub fn cd_with_args(dest: &str) -> String {
         let parent = dir.as_path().parent();
         let new_dir = env::set_current_dir(parent.unwrap());
         match new_dir {
-          Ok(_) => {
-            return String::from("In parent")
+          Ok(()) => {
+            let curr_dir = env::current_dir();
+            match curr_dir {
+              Ok(dir) => {
+                return dir.to_str().unwrap().to_string() // returns current directory path
+              },
+              Err(_) => return String::from("Error! No parent directory found!")
+            }
           },
           Err(_) => {
-            return String::from("Error! No parent directory found.")
+            return String::from("Error!") // Should never happen
           }
         }
       }
 
       // for cd to child directory
       if found_dirs.is_empty() {
-        return String::from("This directory is empty!")
+        return String::from("No directory found!")
       }
       
       // Now we have a list of available directories, check if given destination matches any and cd if so
