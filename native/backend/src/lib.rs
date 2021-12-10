@@ -1,6 +1,5 @@
 use std::*;
 use std::{
-  io::Write,
   path::{Path, PathBuf},
 };
 extern crate dirs;
@@ -70,13 +69,13 @@ pub fn cd_with_args(dest: &str) -> String {
       }
 
       // for cd to child directory
-      if found_dirs.len() < 1 {
+      if found_dirs.is_empty() {
         return String::from("This directory is empty!")
       }
       
       // Now we have a list of available directories, check if given destination matches any and cd if so
       for d in found_dirs {
-        if *d.1 == true && d.0.to_str().unwrap() == dest {
+        if *d.1 && d.0.to_str().unwrap() == dest {
           let new_dir = env::set_current_dir(d.0);
           match new_dir {
             Ok(_) => {
@@ -86,18 +85,18 @@ pub fn cd_with_args(dest: &str) -> String {
               return String::from("Error! Directory could not be moved to.")
             }
           }
-        } else if *d.1 == false && d.0.to_str().unwrap() == dest{
+        } else if !(*d.1) && d.0.to_str().unwrap() == dest{
           return String::from("That is a file not a directory!")
         }
       }
       
-      return String::new()
+      String::new()
     },
     Err(_e) => String::from("Error! Invalid \"cd\" call.")
   }
 }
 
-pub fn get_dir_files(dir: &PathBuf) ->  HashMap<PathBuf, bool> {
+pub fn get_dir_files(dir: &Path) ->  HashMap<PathBuf, bool> {
   let mut found_dirs: HashMap<PathBuf, bool> = HashMap::new(); // HashMap(K: Pathbuf, V: Bool) -- Value true if path is directory
   let dir_paths = fs::read_dir(dir.to_str().unwrap()).unwrap();
   
@@ -119,7 +118,7 @@ pub fn get_dir_files(dir: &PathBuf) ->  HashMap<PathBuf, bool> {
     }
   }
 
-  return found_dirs;
+  found_dirs
 }
 
 

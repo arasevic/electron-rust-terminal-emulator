@@ -18,10 +18,16 @@ fn marshalling_example_concat(mut cx: FunctionContext) -> JsResult<JsString> {
 fn marshalling_hello_from_rust(mut cx: FunctionContext) -> JsResult<JsString> {
     let r = hello_from_rust();
     Ok(cx.string(r))
-   }
+}
+
+fn marshalling_cd(mut cx: FunctionContext) -> JsResult<JsString>{
+    let r = cd();
+    Ok(cx.string(r))
+}
 
 register_module!(mut cx, {
  cx.export_function("example_add", marshalling_example_add)?;
  cx.export_function("example_concat", marshalling_example_concat);
- cx.export_function("hello_from_rust", marshalling_hello_from_rust)
+ cx.export_function("hello_from_rust", marshalling_hello_from_rust);
+ cx.export_function("cd", marshalling_cd)
 });
