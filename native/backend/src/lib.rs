@@ -1,3 +1,5 @@
+use std::fs::*;
+
 pub fn example_add(a: f32, b: f32) -> f32 {
  println!("[from native lib] example_add start");
  println!("[from native lib] a = {}, b = {}", a, b);
@@ -21,6 +23,19 @@ pub fn hello_from_rust() -> String {
 	println!("[from native lib] hello_from_rust end");
 	let phrase = "Saying hello from rust inside of node wrapped in electron!";
 	phrase.to_string()
+}
+
+pub fn mkdir(path: &str) -> String {
+  let new_dir = create_dir(path);
+  match new_dir {
+    Ok(()) => {
+      String::from(path) // Returns given path
+    },
+    Err(_) => { // Occurs when the parent of given path does not exist
+      let _ = create_dir_all(path); // Creates new directory and all required parents for it
+      String::from(path)
+    }
+  }
 }
 
 #[cfg(test)]
