@@ -1,3 +1,5 @@
+use std::fs::*;
+
 pub fn example_add(a: f32, b: f32) -> f32 {
  println!("[from native lib] example_add start");
  println!("[from native lib] a = {}, b = {}", a, b);
@@ -21,6 +23,18 @@ pub fn hello_from_rust() -> String {
 	println!("[from native lib] hello_from_rust end");
 	let phrase = "Saying hello from rust inside of node wrapped in electron!";
 	phrase.to_string()
+}
+
+pub fn cp(from: &str, to: &str) -> String {
+  let cp_result = copy(from, to);
+  match cp_result {
+    Ok(_) => {
+      return String::from(to)
+    },
+    Err(_) => {
+      return String::from("Error! Make sure origin destination exists and that you have permission to read and write to these files.")
+    }
+  }
 }
 
 #[cfg(test)]
