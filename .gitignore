@@ -29,3 +29,8 @@ yarn-error.log*
 preload.error.log
 native/index.node
 native/artifacts.json
+
+# Rust
+/native/target
+/native/backend/target
+**/*.rs.bk
