@@ -142,6 +142,18 @@ pub fn mkdir(path: &str) -> String {
   }
 }
 
+pub fn cp(from: &str, to: &str) -> String {
+  let cp_result = copy(from, to);
+  match cp_result {
+    Ok(_) => {
+      return String::from(to)
+    },
+    Err(_) => {
+      return String::from("Error! Make sure origin destination exists and that you have permission to read and write to these files.")
+    }
+  }
+}
+
 #[cfg(test)]
 mod tests {
  use super::*;

@@ -1,0 +1,44 @@
+In file included from ../src/neon.cc:2:
+In file included from ../node_modules/nan/nan.h:2884:
+../node_modules/nan/nan_typedarray_contents.h:34:43: warning: 'GetContents' is deprecated: Use GetBackingStore. See http://crbug.com/v8/9908. [-Wdeprecated-declarations]
+      data   = static_cast<char*>(buffer->GetContents().Data()) + byte_offset;
+                                          ^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/v8.h:5272:3: note: 'GetContents' has been explicitly marked deprecated here
+  V8_DEPRECATE_SOON("Use GetBackingStore. See http://crbug.com/v8/9908.")
+  ^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/v8config.h:402:39: note: expanded from macro 'V8_DEPRECATE_SOON'
+# define V8_DEPRECATE_SOON(message) [[deprecated(message)]]
+                                      ^
+In file included from ../src/neon.cc:8:
+../src/neon_string.h:28:5: warning: ignoring return value of function declared with 'warn_unused_result' attribute [-Wunused-result]
+    maybe.ToLocal(&result);
+    ^~~~~~~~~~~~~ ~~~~~~~
+In file included from ../src/neon.cc:10:
+../src/neon_task.h:62:11: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
+    node::MakeCallback(isolate_, context->Global(), callback, 2, argv);
+          ^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/node.h:190:1: note: 'MakeCallback' has been explicitly marked deprecated here
+NODE_DEPRECATED("Use MakeCallback(..., async_context)",
+^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/node.h:108:20: note: expanded from macro 'NODE_DEPRECATED'
+    __attribute__((deprecated(message))) declarator
+                   ^
+../src/neon.cc:217:48: warning: 'GetContents' is deprecated: Use GetBackingStore. See http://crbug.com/v8/9908. [-Wdeprecated-declarations]
+  v8::ArrayBuffer::Contents contents = buffer->GetContents();
+                                               ^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/v8.h:5272:3: note: 'GetContents' has been explicitly marked deprecated here
+  V8_DEPRECATE_SOON("Use GetBackingStore. See http://crbug.com/v8/9908.")
+  ^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/v8config.h:402:39: note: expanded from macro 'V8_DEPRECATE_SOON'
+# define V8_DEPRECATE_SOON(message) [[deprecated(message)]]
+                                      ^
+../src/neon.cc:329:9: warning: 'AtExit' is deprecated: Use the three-argument variant of AtExit() or AddEnvironmentCleanupHook() [-Wdeprecated-declarations]
+  node::AtExit(cleanup_class_map, holder);
+        ^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/node.h:852:1: note: 'AtExit' has been explicitly marked deprecated here
+NODE_DEPRECATED(
+^
+/Users/ybar/Library/Caches/node-gyp/14.17.0/include/node/node.h:108:20: note: expanded from macro 'NODE_DEPRECATED'
+    __attribute__((deprecated(message))) declarator
+                   ^
+5 warnings generated.

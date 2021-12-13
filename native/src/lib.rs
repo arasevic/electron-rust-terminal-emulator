@@ -47,6 +47,13 @@ fn marshalling_mkdir (mut cx: FunctionContext) -> JsResult<JsString> {
     Ok(cx.string(r))
 }
 
+fn marshalling_cp(mut cx: FunctionContext) -> JsResult<JsString> {
+    let from = cx.argument::<JsString>(0)?.value();
+    let to = cx.argument::<JsString>(1)?.value();
+    let r = cp(&from, &to);
+    Ok(cx.string(r))
+}
+
 register_module!(mut cx, {
  cx.export_function("example_add", marshalling_example_add)?;
  cx.export_function("example_concat", marshalling_example_concat);
@@ -55,5 +62,6 @@ register_module!(mut cx, {
  cx.export_function("help", marshalling_help);
  cx.export_function("cd", marshalling_cd);
  cx.export_function("cd_with_args", marshalling_cd_with_args);
- cx.export_function("mkdir", marshalling_mkdir)
+ cx.export_function("mkdir", marshalling_mkdir);
+ cx.export_function("cp", marshalling_cp)
 });
