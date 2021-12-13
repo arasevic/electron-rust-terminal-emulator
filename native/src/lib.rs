@@ -41,10 +41,10 @@ fn marshalling_cd_with_args(mut cx: FunctionContext) -> JsResult<JsString> {
  Ok(cx.string(r))
 }
 
-fn marshalling_mkdir (mut cx: FunctionContext) -> JsResult<JsString> {
-    let path = cx.argument::<JsString>(0)?.value();
-    let r = mkdir(&path);
-    Ok(cx.string(r))
+fn marshalling_mkdir(mut cx: FunctionContext) -> JsResult<JsString> {
+ let path = cx.argument::<JsString>(0)?.value();
+ let r = mkdir(&path);
+ Ok(cx.string(r))
 }
 
 register_module!(mut cx, {

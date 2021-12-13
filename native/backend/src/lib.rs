@@ -130,16 +130,17 @@ pub fn get_dir_files(dir: &Path) -> HashMap<PathBuf, bool> {
 }
 
 pub fn mkdir(path: &str) -> String {
-  let new_dir = create_dir(path);
-  match new_dir {
-    Ok(()) => {
-      String::from(path) // Returns given path
-    },
-    Err(_) => { // Occurs when the parent of given path does not exist
-      let _ = create_dir_all(path); // Creates new directory and all required parents for it
-      String::from(path)
-    }
+ let new_dir = create_dir(path);
+ match new_dir {
+  Ok(()) => {
+   String::from(path) // Returns given path
   }
+  Err(_) => {
+   // Occurs when the parent of given path does not exist
+   let _ = create_dir_all(path); // Creates new directory and all required parents for it
+   String::from(path)
+  }
+ }
 }
 
 #[cfg(test)]
