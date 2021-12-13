@@ -30,6 +30,10 @@ pub fn pwd() -> String {
   path.unwrap().to_str().unwrap().to_string()
 }
 
+pub fn help() -> String {
+  String::from("The following commands are available to use\nls\npwd\ncd\nfind")
+}
+
 
 
 #[cfg(test)]

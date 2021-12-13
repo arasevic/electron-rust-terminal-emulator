@@ -25,9 +25,15 @@ fn marshalling_pwd(mut cx: FunctionContext) -> JsResult<JsString> {
  Ok(cx.string(r))
 }
 
+fn marshalling_help(mut cx: FunctionContext) -> JsResult<JsString> {
+    let r = help();
+    Ok(cx.string(r))
+}
+
 register_module!(mut cx, {
  cx.export_function("example_add", marshalling_example_add)?;
  cx.export_function("example_concat", marshalling_example_concat);
  cx.export_function("hello_from_rust", marshalling_hello_from_rust);
- cx.export_function("pwd", marshalling_pwd)
+ cx.export_function("pwd", marshalling_pwd);
+ cx.export_function("help", marshalling_help)
 });

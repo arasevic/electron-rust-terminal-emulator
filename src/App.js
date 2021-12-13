@@ -33,6 +33,10 @@ function App() {
       p.native.pwd() ={" "}
       {p.native.pwd()}
      </li>
+     <li>
+      p.native.help() ={" "}
+      {p.native.help()}
+     </li>
     </ul>
    </header>
   </div>
