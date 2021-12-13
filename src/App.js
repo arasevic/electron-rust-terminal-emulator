@@ -53,6 +53,14 @@ function App() {
       p.native.pwd() ={" "}
       {p.native.pwd()}
      </li>
+     <li>
+      p.native.mkdir("testing_creating_directory") ={" "}
+      {p.native.mkdir("testing_creating_directory")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
     </ul>
    </header>
   </div>
