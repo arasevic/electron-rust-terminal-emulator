@@ -3,6 +3,7 @@ use std::path::{Path, PathBuf};
 use std::*;
 extern crate dirs;
 use std::collections::HashMap;
+use std::fs::*;
 
 pub fn example_add(a: f32, b: f32) -> f32 {
  println!("[from native lib] example_add start");
@@ -126,6 +127,19 @@ pub fn get_dir_files(dir: &Path) -> HashMap<PathBuf, bool> {
  }
 
  found_dirs
+}
+
+pub fn mkdir(path: &str) -> String {
+  let new_dir = create_dir(path);
+  match new_dir {
+    Ok(()) => {
+      String::from(path) // Returns given path
+    },
+    Err(_) => { // Occurs when the parent of given path does not exist
+      let _ = create_dir_all(path); // Creates new directory and all required parents for it
+      String::from(path)
+    }
+  }
 }
 
 #[cfg(test)]
