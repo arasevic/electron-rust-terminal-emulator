@@ -29,6 +29,10 @@ function App() {
       p.native.example_concat( "🌶haba", "nero🌶" ) ={" "}
       {p.native.example_concat("🌶haba", "nero🌶")}
      </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
     </ul>
    </header>
   </div>

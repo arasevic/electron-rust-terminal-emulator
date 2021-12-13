@@ -1,3 +1,5 @@
+use std::env;
+
 pub fn example_add(a: f32, b: f32) -> f32 {
  println!("[from native lib] example_add start");
  println!("[from native lib] a = {}, b = {}", a, b);
@@ -22,6 +24,13 @@ pub fn hello_from_rust() -> String {
 	let phrase = "Saying hello from rust inside of node wrapped in electron!";
 	phrase.to_string()
 }
+
+pub fn pwd() -> String {
+  let path = env::current_dir();
+  path.unwrap().to_str().unwrap().to_string()
+}
+
+
 
 #[cfg(test)]
 mod tests {
