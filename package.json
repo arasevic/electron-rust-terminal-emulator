@@ -76,6 +76,7 @@
   "cross-env": "^7.0.2",
   "electron-is-dev": "^1.1.0",
   "react": "^16.13.0",
+  "react-console-emulator": "^5.0.1",
   "react-dom": "^16.13.0",
   "react-scripts": "3.4.0"
  },

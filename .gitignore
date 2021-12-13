@@ -4,6 +4,8 @@
 /target
 /dist
 
+src/App-Backup.js
+
 # dependencies
 /node_modules
 /.pnp
