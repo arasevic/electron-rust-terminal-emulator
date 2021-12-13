@@ -26,19 +26,19 @@ fn marshalling_pwd(mut cx: FunctionContext) -> JsResult<JsString> {
 }
 
 fn marshalling_help(mut cx: FunctionContext) -> JsResult<JsString> {
-    let r = help();
-    Ok(cx.string(r))
+ let r = help();
+ Ok(cx.string(r))
 }
 
-fn marshalling_cd(mut cx: FunctionContext) -> JsResult<JsString>{
-    let r = cd();
-    Ok(cx.string(r))
+fn marshalling_cd(mut cx: FunctionContext) -> JsResult<JsString> {
+ let r = cd();
+ Ok(cx.string(r))
 }
 
-fn marshalling_cd_with_args(mut cx: FunctionContext) -> JsResult<JsString>{
-    let dest = cx.argument::<JsString>(0)?.value();
-    let r = cd_with_args(&dest);
-    Ok(cx.string(r))
+fn marshalling_cd_with_args(mut cx: FunctionContext) -> JsResult<JsString> {
+ let dest = cx.argument::<JsString>(0)?.value();
+ let r = cd_with_args(&dest);
+ Ok(cx.string(r))
 }
 
 register_module!(mut cx, {
@@ -46,7 +46,7 @@ register_module!(mut cx, {
  cx.export_function("example_concat", marshalling_example_concat);
  cx.export_function("hello_from_rust", marshalling_hello_from_rust);
  cx.export_function("pwd", marshalling_pwd);
- cx.export_function("help", marshalling_help)
+ cx.export_function("help", marshalling_help);
  cx.export_function("cd", marshalling_cd);
  cx.export_function("cd_with_args", marshalling_cd_with_args)
 });
