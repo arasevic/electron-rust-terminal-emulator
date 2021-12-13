@@ -29,6 +29,38 @@ function App() {
       p.native.example_concat( "🌶haba", "nero🌶" ) ={" "}
       {p.native.example_concat("🌶haba", "nero🌶")}
      </li>
+     <li>
+      p.native.help() ={" "}
+      {p.native.help()}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.cd() ={" "}
+      {p.native.cd()}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.cd_with_args("/Users/tesla/school") ={" "}
+      {p.native.cd_with_args("/Users/tesla/school")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.mkdir("testing_creating_directory") ={" "}
+      {p.native.mkdir("testing_creating_directory")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
     </ul>
    </header>
   </div>
