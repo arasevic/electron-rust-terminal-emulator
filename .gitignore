@@ -31,6 +31,6 @@ native/index.node
 native/artifacts.json
 
 # Rust
-/native/target
+/native/target/**/*
 /native/backend/target
 **/*.rs.bk
