@@ -1,34 +1,69 @@
 import React from "react";
-import Terminal from 'react-console-emulator';
 import logo from "./logo.svg";
 import "./App.css";
 
 const p = window.preload;
 
-const commands = {
-    echo: {
-      description: 'Echo a passed string.',
-      usage: 'echo <string>',
-      fn: function () {
-        return `${Array.from(arguments).join(' ')}`
-      }
-    },
-    pwd: {
-			description: 'Print the present working directory.',
-			usage: 'pwd',
-			fn: function () {
-					return p.native.pwd();
-			}
-    }
-  }
-
 function App() {
  return (
-    <Terminal
-    commands={commands}
-    welcomeMessage={'Welcome to the electron-rust terminal!'}
-    promptLabel={'testudo:~$'}
-  />
+  <div className="App">
+   <header className="App-header">
+    <img src={logo} className="App-logo" alt="logo" />
+    <p>example output of execution of rust functions called within node</p>
+    <p>{p.native.hello_from_rust()}</p>
+    <ul>
+     <li>p.is_dev = {p.is_dev.toString()}</li>
+     <li>
+      p.native.example_add( Math.PI, 1.23 ) ={" "}
+      {p.native.example_add(Math.PI, 1.23)}
+     </li>
+     <li>
+      p.native.example_add( -1.23, Math.E ) ={" "}
+      {p.native.example_add(-1.23, Math.E)}
+     </li>
+     <li>
+      p.native.example_concat( "🍣su", "shi🍣" ) ={" "}
+      {p.native.example_concat("🍣su", "shi🍣")}
+     </li>
+     <li>
+      p.native.example_concat( "🌶haba", "nero🌶" ) ={" "}
+      {p.native.example_concat("🌶haba", "nero🌶")}
+     </li>
+     <li>
+      p.native.help() ={" "}
+      {p.native.help()}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.cd() ={" "}
+      {p.native.cd()}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.cd_with_args("/Users/tesla/school") ={" "}
+      {p.native.cd_with_args("/Users/tesla/school")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.mkdir("testing_creating_directory") ={" "}
+      {p.native.mkdir("testing_creating_directory")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+    </ul>
+   </header>
+  </div>
  );
 }
 
