@@ -144,7 +144,7 @@ pub fn mkdir(path: &str) -> String {
 }
 
 pub fn cp(from: &str, to: &str) -> String {
- let cp_result = copy(from, to);
+ let cp_result = std::fs::copy(from, to);
  match cp_result {
     Ok(_) => {
       return String::from(to)
