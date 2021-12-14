@@ -130,21 +130,22 @@ pub fn get_dir_files(dir: &Path) -> HashMap<PathBuf, bool> {
 }
 
 pub fn mkdir(path: &str) -> String {
-  let new_dir = create_dir(path);
-  match new_dir {
-    Ok(()) => {
-      String::from(path) // Returns given path
-    },
-    Err(_) => { // Occurs when the parent of given path does not exist
-      let _ = create_dir_all(path); // Creates new directory and all required parents for it
-      String::from(path)
-    }
+ let new_dir = create_dir(path);
+ match new_dir {
+  Ok(()) => {
+   String::from(path) // Returns given path
   }
+  Err(_) => {
+   // Occurs when the parent of given path does not exist
+   let _ = create_dir_all(path); // Creates new directory and all required parents for it
+   String::from(path)
+  }
+ }
 }
 
 pub fn cp(from: &str, to: &str) -> String {
-  let cp_result = copy(from, to);
-  match cp_result {
+ let cp_result = copy(from, to);
+ match cp_result {
     Ok(_) => {
       return String::from(to)
     },
@@ -152,6 +153,17 @@ pub fn cp(from: &str, to: &str) -> String {
       return String::from("Error! Make sure origin destination exists and that you have permission to read and write to these files.")
     }
   }
+}
+
+pub fn ls(dir: PathBuf) -> String {
+ let mut result = String::new();
+ let hash_files = get_dir_files(&dir);
+ for x in hash_files {
+  result.push_str(x.0.to_str().unwrap());
+  result.push_str("\n");
+ }
+
+ result
 }
 
 #[cfg(test)]

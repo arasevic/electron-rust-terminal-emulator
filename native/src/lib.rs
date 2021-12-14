@@ -1,5 +1,6 @@
 use electron_rust_terminal_emulator_backend::*;
 use neon::prelude::*;
+use std::path::PathBuf;
 
 fn marshalling_example_add(mut cx: FunctionContext) -> JsResult<JsNumber> {
  let a = cx.argument::<JsNumber>(0)?.value();
@@ -41,17 +42,23 @@ fn marshalling_cd_with_args(mut cx: FunctionContext) -> JsResult<JsString> {
  Ok(cx.string(r))
 }
 
-fn marshalling_mkdir (mut cx: FunctionContext) -> JsResult<JsString> {
-    let path = cx.argument::<JsString>(0)?.value();
-    let r = mkdir(&path);
-    Ok(cx.string(r))
+fn marshalling_mkdir(mut cx: FunctionContext) -> JsResult<JsString> {
+ let path = cx.argument::<JsString>(0)?.value();
+ let r = mkdir(&path);
+ Ok(cx.string(r))
 }
 
 fn marshalling_cp(mut cx: FunctionContext) -> JsResult<JsString> {
-    let from = cx.argument::<JsString>(0)?.value();
-    let to = cx.argument::<JsString>(1)?.value();
-    let r = cp(&from, &to);
-    Ok(cx.string(r))
+ let from = cx.argument::<JsString>(0)?.value();
+ let to = cx.argument::<JsString>(1)?.value();
+ let r = cp(&from, &to);
+ Ok(cx.string(r))
+}
+
+fn marshalling_ls(mut cx: FunctionContext) -> JsResult<JsString> {
+ let path = PathBuf::from(cx.argument::<JsString>(0)?.value());
+ let r = ls(path);
+ Ok(cx.string(r))
 }
 
 register_module!(mut cx, {
@@ -63,5 +70,6 @@ register_module!(mut cx, {
  cx.export_function("cd", marshalling_cd);
  cx.export_function("cd_with_args", marshalling_cd_with_args);
  cx.export_function("mkdir", marshalling_mkdir);
- cx.export_function("cp", marshalling_cp)
+ cx.export_function("cp", marshalling_cp);
+ cx.export_function("ls", marshalling_ls)
 });

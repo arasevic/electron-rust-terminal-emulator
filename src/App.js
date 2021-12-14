@@ -61,6 +61,22 @@ function App() {
       p.native.pwd() ={" "}
       {p.native.pwd()}
      </li>
+		 <li>
+      p.native.ls("/Users/tesla/school") ={" "}
+      {p.native.ls("/Users/tesla/school")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+		 <li>
+      p.native.cp("/Users/tesla/school/testing.txt", "Users/tesla/school/testing_creating_directory/test.txt") ={" "}
+      {p.native.cp("/Users/tesla/school/testing.txt", "Users/tesla/school/testing_creating_directory/test.txt")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
     </ul>
    </header>
   </div>
