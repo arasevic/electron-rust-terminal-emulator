@@ -6,3 +6,6 @@ edition = "2018"
 
 [lib]
 name = "electron_rust_terminal_emulator_backend"
+
+[dependencies]
+dirs = "4.0"

@@ -29,6 +29,54 @@ function App() {
       p.native.example_concat( "🌶haba", "nero🌶" ) ={" "}
       {p.native.example_concat("🌶haba", "nero🌶")}
      </li>
+     <li>
+      p.native.help() ={" "}
+      {p.native.help()}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.cd() ={" "}
+      {p.native.cd()}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.cd_with_args("/Users/tesla/school") ={" "}
+      {p.native.cd_with_args("/Users/tesla/school")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+     <li>
+      p.native.mkdir("testing_creating_directory") ={" "}
+      {p.native.mkdir("testing_creating_directory")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+		 <li>
+      p.native.ls("/Users/tesla/school") ={" "}
+      {p.native.ls("/Users/tesla/school")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
+		 <li>
+      p.native.cp("/Users/tesla/school/testing.txt", "Users/tesla/school/testing_creating_directory/test.txt") ={" "}
+      {p.native.cp("/Users/tesla/school/testing.txt", "Users/tesla/school/testing_creating_directory/test.txt")}
+     </li>
+     <li>
+      p.native.pwd() ={" "}
+      {p.native.pwd()}
+     </li>
     </ul>
    </header>
   </div>
